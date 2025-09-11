@@ -1,9 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import Sidebar from "../components/Sidebar";
-import Topbar from "../components/Topbar";
-import DashboardContent from "../components/content/DashboardContent";
-import UsersContent from "../components/content/UsersContent";
+import Sidebar from "../../components/Sidebar";
+import Topbar from "../../components/Topbar";
+import DashboardContent from "../../components/content/DashboardContent";
+import UsersContent from "../../components/content/UsersContent";
 
 
 export default function DashboardLayout() {
@@ -23,7 +23,9 @@ export default function DashboardLayout() {
     return (
         <div className="flex h-screen">
             {/* Sidebar */}
-            <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+            <Sidebar 
+            // activeTab={activeTab} setActiveTab={setActiveTab} 
+            />
 
             {/* Right side */}
             <div className="flex-1 flex flex-col h-screen"> {/* full height */}
