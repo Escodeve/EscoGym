@@ -19,7 +19,7 @@ export default function AccessFilters({
   const handleReset = () => {
     setSearchName('');
     setFilterDate('');
-    onSearch(); // optionnel
+    onSearch(); 
   };
 
   return (
@@ -33,9 +33,9 @@ export default function AccessFilters({
         direction={{ xs: 'column', sm: 'row' }}
         spacing={3}
         alignItems="center"
-        justifyContent="flex-end" // tout aligné à droite
+        justifyContent="flex-end"
       >
-        {/* Champs */}
+    
         <Stack direction={{ xs: 'column', sm: 'row' }} spacing={3} alignItems="center" >
           <motion.div whileHover={{ scale: 1.03 }}>
             <TextField
@@ -81,7 +81,7 @@ export default function AccessFilters({
           </motion.div>
         </Stack>
 
-        {/* Boutons */}
+      
         <Stack direction="row" spacing={2}>
           <motion.div whileHover={{ scale: 1.05 }}>
             <Button

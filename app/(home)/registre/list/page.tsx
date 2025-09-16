@@ -35,7 +35,7 @@ export default function RegistrePage() {
 
       const logsWithName: AccessLog[] = response.data.logs.map((log) => ({
         ...log,
-        userName: log.user?.name, // si user existe
+        userName: log.user?.name,
       }));
   
       setLogs(logsWithName);
