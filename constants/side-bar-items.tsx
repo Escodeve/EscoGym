@@ -1,6 +1,6 @@
 import { MenuItem } from "@/@Types/sidebar";
 import { FaTag, FaUsers } from "react-icons/fa";
-import { MdOutlineSpaceDashboard, MdSubscriptions } from "react-icons/md";
+import { MdOutlineSpaceDashboard, MdSubscriptions ,MdFingerprint} from "react-icons/md";
 
   export const menuItems: MenuItem[] = [
     { 
@@ -19,7 +19,13 @@ import { MdOutlineSpaceDashboard, MdSubscriptions } from "react-icons/md";
       name: "Offers", 
       icon: <FaTag className="text-2xl text-white" />, 
       key: "offers",
-      path: "/offers"
+      path: "/Offers/list"
+    },
+    { 
+      name: "Registre des entrées", 
+      icon: <MdFingerprint className="text-2xl text-white" />, 
+      key: "subscriptions",
+      path: "/registre/list"
     },
     { 
       name: "Subscriptions", 

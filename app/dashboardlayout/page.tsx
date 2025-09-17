@@ -4,6 +4,8 @@ import Sidebar from "../../components/Sidebar";
 import Topbar from "../../components/Topbar";
 import DashboardContent from "../../components/content/DashboardContent";
 import UsersContent from "../../components/content/UsersContent";
+import OffersPage from "../(home)/Offers/list/page";
+import RegistrePage from "../(home)/registre/list/page";
 
 
 export default function DashboardLayout() {
@@ -17,6 +19,10 @@ export default function DashboardLayout() {
                 return <UsersContent />;
             default:
                 return <DashboardContent />;
+            case "offers":
+                    return <OffersPage />;
+            case "reistre":
+                    return <RegistrePage />;
         }
     };
 
