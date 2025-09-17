@@ -45,9 +45,15 @@ export default function OfferForm({ open, onClose, onSubmit, editingOffer }: Off
   const handleChange = (field: keyof Offer, value: string) => {
     setFormData((prev) => ({
       ...prev,
-      [field]: value === '' ? undefined : Number(value),
+      [field]:
+        field === "name" // si c'est le champ texte
+          ? value
+          : value === "" 
+            ? undefined 
+            : Number(value),
     }));
   };
+  
   
 
   const handleSubmit = () => {

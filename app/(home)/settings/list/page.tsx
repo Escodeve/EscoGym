@@ -2,16 +2,18 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import OpeningHours from './OpeningHours'; // adjust the import path as needed
+import OpeningHours from './OpeningHours';
+import BreakAndHolidays from './BreakAndHolidays';
+
 
 export default function SettingsPage() {
   const [selectedTab, setSelectedTab] = useState(0);
 
-  const tabs = ['General', 'Opening Hours', 'Break & Holidays'];
+  const tabs = ['Général', 'Horaires d ouverture', 'Jours fériés'];
 
   return (
     <div className="p-6">
-      <h1 className="text-3xl font-bold mb-6">Settings</h1>
+      <h1 className="text-3xl font-bold mb-6">Paramètres</h1>
 
       <div className="flex space-x-2 mb-6">
         {tabs.map((tab, idx) => (
@@ -69,31 +71,10 @@ export default function SettingsPage() {
 )}
 
 
-        {selectedTab === 2 && (
-          <motion.div
-            key="breaks"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.3 }}
-            className="bg-white p-6 rounded-lg shadow"
-          >
-            <h2 className="text-lg font-semibold mb-4">Breaks & Holidays</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <input
-                className="border px-3 py-2 rounded w-full"
-                placeholder="Lunch Break (12:00 - 13:00)"
-              />
-              <input
-                className="border px-3 py-2 rounded w-full"
-                placeholder="Public Holidays"
-              />
-            </div>
-            <button className="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
-              Save Breaks & Holidays
-            </button>
-          </motion.div>
-        )}
+{selectedTab === 2 && (
+  <BreakAndHolidays />
+)}
+
       </AnimatePresence>
     </div>
   );

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { TextField, Button, Stack, TablePagination } from '@mui/material';
+import { Stack, TablePagination, CircularProgress, Box } from '@mui/material';
 import axios from 'axios';
 import AccessLogsTable, { AccessLog } from './AccessLogsTable';
 import AccessFilters from './AccessFilters';
@@ -13,14 +13,16 @@ export default function RegistrePage() {
   const [total, setTotal] = useState(0);
   const [searchName, setSearchName] = useState('');
   const [filterDate, setFilterDate] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const fetchLogs = async () => {
     try {
+      setLoading(true); // démarrer le loading
       const token = localStorage.getItem('token');
       if (!token) throw new Error('Token manquant');
   
       const response = await axios.get(
-        'https://gym-access-worker.gym-access.workers.dev/api/v1/accessLogs',
+        'https://gym-access-worker.gym-access.workers.dev/api/v1/accesslogs',
         {
           headers: { Authorization: `Bearer ${token}` },
           params: {
@@ -32,8 +34,7 @@ export default function RegistrePage() {
         }
       );
   
-
-      const logsWithName: AccessLog[] = response.data.logs.map((log) => ({
+      const logsWithName: AccessLog[] = response.data.logs.map((log: any) => ({
         ...log,
         userName: log.user?.name,
       }));
@@ -42,10 +43,11 @@ export default function RegistrePage() {
       setTotal(response.data.total);
     } catch (error: any) {
       console.error('Erreur lors du fetch des logs :', error.message);
+    } finally {
+      setLoading(false); // arrêter le loading
     }
   };
   
-
   useEffect(() => {
     fetchLogs();
   }, [page, pageSize]);
@@ -72,7 +74,13 @@ export default function RegistrePage() {
         />
       </Stack>
 
-      <AccessLogsTable logs={logs} />
+      {loading ? (
+        <Box className="flex justify-center items-center h-64">
+          <CircularProgress />
+        </Box>
+      ) : (
+        <AccessLogsTable logs={logs} />
+      )}
 
       <TablePagination
         component="div"
