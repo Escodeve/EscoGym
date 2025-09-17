@@ -1,12 +1,12 @@
-import { User } from "@/@Types/auth";
+import { UserAdmin } from "@/@Types/auth";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface AuthState {
   loading: boolean;
-  user: User | null;
+  user: UserAdmin | null;
   token: string | null;
   error: string | null;
-  users: User[]; // 👈 store list of users
+  users: UserAdmin[];
 }
 
 const initialState: AuthState = {
@@ -26,7 +26,7 @@ const authSlice = createSlice({
       state.loading = true;
       state.error = null;
     },
-    loginSuccess: (state, action: PayloadAction<{ token: string } & User>) => {
+    loginSuccess: (state, action) => {
       state.loading = false;
       state.token = action.payload.token;
       const { token, ...userData } = action.payload;
@@ -48,7 +48,7 @@ const authSlice = createSlice({
       state.loading = true;
       state.error = null;
     },
-    getUsersSuccess: (state, action: PayloadAction<User[]>) => {
+    getUsersSuccess: (state, action) => {
       state.loading = false;
       state.users = action.payload;
     },

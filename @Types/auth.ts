@@ -1,5 +1,5 @@
-// Type for the API response
- export interface User {
+
+ export interface UserAdmin {
   id: number;
   name: string;
   email: string;
