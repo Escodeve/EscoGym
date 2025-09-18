@@ -13,6 +13,26 @@ import { createPlanRequest,
   // Access Logs
 import { fetchLogsRequest } from "../slices/registre";
 import { fetchLogsSaga } from "./handlers/registre";
+import {
+  fetchUsersRequest,
+  createUser,
+  editUser,
+  deleteUser,
+  fetchUserByIdRequest,
+  fetchUserMembershipRequest,
+  fetchUserAccessLogsRequest,
+  editUserRequest,
+} from "../slices/users";
+
+import {
+  handleFetchUsers,
+  handleCreateUser,
+  handleEditUser,
+  handleDeleteUser,
+  handleFetchUserById,
+  handleFetchUserMembership,
+  handleFetchUserAccessLogs,
+} from "./handlers/users";
 
 export function* rootSaga() {
   yield takeLatest(loginRequest.type, handleLogin);
@@ -24,4 +44,14 @@ export function* rootSaga() {
  
    // Access Logs
    yield takeLatest(fetchLogsRequest.type, fetchLogsSaga);
+
+    // Users
+  yield takeLatest(fetchUsersRequest.type, handleFetchUsers);
+  yield takeLatest(createUser.type, handleCreateUser);
+  yield takeLatest(editUserRequest.type, handleEditUser);
+
+  yield takeLatest(deleteUser.type, handleDeleteUser);
+  yield takeLatest(fetchUserByIdRequest.type, handleFetchUserById);
+  yield takeLatest(fetchUserMembershipRequest.type, handleFetchUserMembership);
+  yield takeLatest(fetchUserAccessLogsRequest.type, handleFetchUserAccessLogs);
 }
